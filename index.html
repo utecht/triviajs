@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app>
+    <head>
+        <script src="angular.min.js"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="bootstrap.min.css">
+    </head>
+    <body>
+        <div ng-controller="TeamCtrl">
+            <ul ng-repeat="team in teams | orderBy:team.points.total()">
+                <span>{{team.name}}</span>
+                <span> - Points: {{team.points.total()}}</span>
+                <table>
+                    <td ng-repeat="round in team.points.round1">
+                        <span>{{round.number}}</span>
+                        <input type="text" ng-model=round.points size="1">
+                    </td>
+                </table>
+                <table>
+                    <td ng-repeat="round in team.points.round2">
+                        <span>{{round.number}}</span>
+                        <input type="text" ng-model=round.points size="1">
+                    </td>
+                </table>
+            </ul>
+
+
+            <form ng-submit="addTeam()">
+                <input type="text" ng-model="teamName" size="100"
+                    placeholder="add new team here">
+                <input class="btn-primary" type="submit" value="add">
+            </form>
+        </div>
+    </body>
+</html>
